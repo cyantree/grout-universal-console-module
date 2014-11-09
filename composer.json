@@ -1,0 +1,28 @@
+{
+    "name": "cyantree/grout-universal-console-module",
+    "type": "grout-module",
+    "description": "module which provides a web and commandline console",
+    "keywords": [
+        "grout",
+        "console"
+    ],
+    "homepage": "https://github.com/cyantree/grout-universal-console-module",
+    "license": "LGPL-3.0",
+    "authors": [
+        {
+            "name": "Christoph Schreiber",
+            "email": "mail@cyantree.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Grout\\Cyantree\\UniversalConsoleModule\\": ""
+        }
+    },
+    "require": {
+        "cyantree/grout": "5.*"
+    },
+    "extra": {
+        "grout-module-name": "Cyantree/UniversalConsoleModule"
+    }
+}
