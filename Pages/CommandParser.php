@@ -62,6 +62,18 @@ class CommandParser extends Page
                 }
             }
 
+            if (!$found && $this->app->getConfig()->developmentMode) {
+                foreach ($config->developmentCommandPaths as $commandNamespace => $commandPath) {
+                    $commandFile = $commandPath . $command . 'Command.php';
+
+                    if (is_file($commandFile)) {
+                        $commandClass = $commandNamespace . $command . 'Command';
+                        $found = true;
+                        break;
+                    }
+                }
+            }
+
             if ($found) {
                 /** @var UniversalConsoleCommand $c */
                 require_once($commandFile);
