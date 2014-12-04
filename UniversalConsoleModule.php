@@ -3,7 +3,6 @@ namespace Grout\Cyantree\UniversalConsoleModule;
 
 use Cyantree\Grout\App\Module;
 use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleConfig;
-use Grout\Cyantree\WebConsoleModule\Types\WebConsoleConfig;
 
 class UniversalConsoleModule extends Module
 {
