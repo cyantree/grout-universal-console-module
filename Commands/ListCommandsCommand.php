@@ -22,7 +22,7 @@ class ListCommandsCommand extends UniversalConsoleUniversalCommand
             );
 
         } else {
-            $commandPaths = $this->factory()->config()->developmentCommandPaths;
+            $commandPaths = $this->factory()->config()->productionCommandPaths;
         }
 
         if ($excludes) {
