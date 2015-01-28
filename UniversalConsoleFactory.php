@@ -7,6 +7,7 @@ use Cyantree\Grout\Tools\StringTools;
 use Grout\AppModule\AppFactory;
 use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleConfig;
 
+// TODO: Remove dependency of AppFactory
 class UniversalConsoleFactory extends AppFactory
 {
     /** @var UniversalConsoleModule */
