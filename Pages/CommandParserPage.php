@@ -9,7 +9,7 @@ use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleResponse;
 use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleWebResponse;
 use Grout\Cyantree\UniversalConsoleModule\UniversalConsoleFactory;
 
-class CommandParser extends Page
+class CommandParserPage extends Page
 {
     /** @var UniversalConsoleResponse */
     private $response;

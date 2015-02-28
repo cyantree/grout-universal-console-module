@@ -4,7 +4,7 @@ namespace Grout\Cyantree\UniversalConsoleModule\Pages;
 use Cyantree\Grout\App\Page;
 use Grout\Cyantree\UniversalConsoleModule\UniversalConsoleFactory;
 
-class Console extends Page
+class ConsolePage extends Page
 {
     public $command;
     public $executionKey;

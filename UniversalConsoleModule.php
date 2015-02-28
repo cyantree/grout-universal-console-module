@@ -9,11 +9,11 @@ class UniversalConsoleModule extends Module
     public function init()
     {
         if ($this->app->isConsole) {
-            $this->addRoute(':::%%command,.*%%/', 'Pages\Commandline');
+            $this->addRoute(':::%%command,.*%%/', 'Pages\CommandlinePage');
 
         } else {
-            $this->addNamedRoute('console', '', 'Pages\Console');
-            $this->addNamedRoute('console-parser', 'parser/', 'Pages\CommandParser');
+            $this->addNamedRoute('console', '', 'Pages\ConsolePage');
+            $this->addNamedRoute('console-parser', 'parser/', 'Pages\CommandParserPage');
         }
 
         $config = new UniversalConsoleConfig();

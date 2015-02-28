@@ -4,13 +4,12 @@ namespace Grout\Cyantree\UniversalConsoleModule\Pages;
 use Cyantree\Grout\App\Page;
 use Cyantree\Grout\Filter\ArrayFilter;
 use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleCommand;
-use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleCommandlineCommand;
 use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleCommandlineResponse;
 use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleRequest;
 use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleWebCommand;
 use Grout\Cyantree\UniversalConsoleModule\UniversalConsoleFactory;
 
-class Commandline extends Page
+class CommandlinePage extends Page
 {
     public function parseTask()
     {
