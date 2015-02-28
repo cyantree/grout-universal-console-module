@@ -39,4 +39,15 @@ class UniversalConsoleCommandlineResponse extends UniversalConsoleResponse
         echo $text . PHP_EOL
                 . str_repeat('-', mb_strlen($text)) . PHP_EOL;
     }
+
+    public function showLink($url, $title = null)
+    {
+        $c = '[LNK] ';
+
+        if ($title) {
+            $c .= $title . ': ';
+        }
+
+        echo $c . $url . PHP_EOL;
+    }
 }

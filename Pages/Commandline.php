@@ -7,8 +7,7 @@ use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleCommand;
 use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleCommandlineCommand;
 use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleCommandlineResponse;
 use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleRequest;
-use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleUniversalCommand;
-use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleUniversalResponse;
+use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleWebCommand;
 use Grout\Cyantree\UniversalConsoleModule\UniversalConsoleFactory;
 
 class Commandline extends Page
@@ -51,25 +50,13 @@ class Commandline extends Page
             $commandFile = null;
             $commandClass = null;
 
-            foreach ($config->productionCommandPaths as $commandNamespace => $commandPath) {
+            foreach ($config->commandPaths as $commandNamespace => $commandPath) {
                 $commandFile = $commandPath . $command . 'Command.php';
 
                 if (is_file($commandFile)) {
                     $commandClass = $commandNamespace . $command . 'Command';
                     $found = true;
                     break;
-                }
-            }
-
-            if (!$found && $this->app->getConfig()->developmentMode) {
-                foreach ($config->developmentCommandPaths as $commandNamespace => $commandPath) {
-                    $commandFile = $commandPath . $command . 'Command.php';
-
-                    if (is_file($commandFile)) {
-                        $commandClass = $commandNamespace . $command . 'Command';
-                        $found = true;
-                        break;
-                    }
                 }
             }
 
@@ -80,9 +67,7 @@ class Commandline extends Page
 
                 $c = new $commandClass();
 
-                if (!$c instanceof UniversalConsoleUniversalCommand
-                        && !$c instanceof UniversalConsoleCommandlineCommand
-                ) {
+                if ($c instanceof UniversalConsoleWebCommand) {
                     $response->showError('Command not accessible: ' . $command);
                     return;
                 }

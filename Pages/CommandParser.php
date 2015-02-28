@@ -3,10 +3,9 @@ namespace Grout\Cyantree\UniversalConsoleModule\Pages;
 
 use Cyantree\Grout\App\Page;
 use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleCommand;
+use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleCommandlineCommand;
 use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleRequest;
 use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleResponse;
-use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleUniversalCommand;
-use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleWebCommand;
 use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleWebResponse;
 use Grout\Cyantree\UniversalConsoleModule\UniversalConsoleFactory;
 
@@ -52,7 +51,7 @@ class CommandParser extends Page
 
             $commandFile = null;
             $commandClass = null;
-            foreach ($config->productionCommandPaths as $commandNamespace => $commandPath) {
+            foreach ($config->commandPaths as $commandNamespace => $commandPath) {
                 $commandFile = $commandPath . $command . 'Command.php';
 
                 if (is_file($commandFile)) {
@@ -62,25 +61,13 @@ class CommandParser extends Page
                 }
             }
 
-            if (!$found && $this->app->getConfig()->developmentMode) {
-                foreach ($config->developmentCommandPaths as $commandNamespace => $commandPath) {
-                    $commandFile = $commandPath . $command . 'Command.php';
-
-                    if (is_file($commandFile)) {
-                        $commandClass = $commandNamespace . $command . 'Command';
-                        $found = true;
-                        break;
-                    }
-                }
-            }
-
             if ($found) {
                 /** @var UniversalConsoleCommand $c */
                 require_once($commandFile);
 
                 $c = new $commandClass();
 
-                if (!$c instanceof UniversalConsoleUniversalCommand && !$c instanceof UniversalConsoleWebCommand) {
+                if ($c instanceof UniversalConsoleCommandlineCommand) {
                     $this->response->showError('Command not accessible: ' . $command);
                     return;
                 }

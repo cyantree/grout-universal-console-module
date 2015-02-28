@@ -9,7 +9,7 @@ class UniversalConsoleModule extends Module
     public function init()
     {
         if ($this->app->isConsole) {
-            $this->addRoute('App:::%%command,.*%%/', 'Pages\Commandline');
+            $this->addRoute(':::%%command,.*%%/', 'Pages\Commandline');
 
         } else {
             $this->addNamedRoute('console', '', 'Pages\Console');
@@ -17,7 +17,7 @@ class UniversalConsoleModule extends Module
         }
 
         $config = new UniversalConsoleConfig();
-        $config->productionCommandPaths[$this->namespace . 'Commands\\'] = $this->path . 'Commands/';
+        $config->commandPaths[$this->definition->namespace . 'Commands\\'] = $this->definition->path . 'Commands/';
 
         $this->app->configs->setDefaultConfig($this->id, $config);
     }

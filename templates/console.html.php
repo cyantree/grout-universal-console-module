@@ -90,9 +90,15 @@ $q = $f->quick();
                     }
 
                     if (this.type == "command") {
-                        var $link = $('<a></a>');
+                        var $link = $('<a>');
                         $link.prop('href', 'javascript:submitCommand("' + this.command.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '")');
                         $link.text(this.title);
+                        $message.html($link);
+
+                    } else if (this.type == "url") {
+                        var $link = $('<a target="_blank">');
+                        $link.prop('href', this.url);
+                        $link.text(this.title ? this.title : this.url);
                         $message.html($link);
 
                     } else {

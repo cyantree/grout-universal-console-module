@@ -53,4 +53,13 @@ class UniversalConsoleWebResponse extends UniversalConsoleResponse
             'message' => $text
         );
     }
+
+    public function showLink($url, $title = null)
+    {
+        $this->messages[] = array(
+                'type' => 'url',
+                'url' => $url,
+                'title' => $title
+        );
+    }
 }

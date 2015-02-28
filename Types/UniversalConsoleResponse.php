@@ -14,6 +14,8 @@ abstract class UniversalConsoleResponse
 
     abstract public function showCommandLink($command, $title = null);
 
+    abstract public function showLink($url, $title = null);
+
     abstract public function showSuccess($message);
 
     abstract public function showInfo($message);

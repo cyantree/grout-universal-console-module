@@ -2,11 +2,11 @@
 namespace Grout\Cyantree\UniversalConsoleModule\Commands;
 
 use Cyantree\Grout\Tools\FileTools;
+use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleCommand;
 use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleCommandlineCommand;
-use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleUniversalCommand;
 use Grout\Cyantree\UniversalConsoleModule\Types\UniversalConsoleWebCommand;
 
-class ListCommandsCommand extends UniversalConsoleUniversalCommand
+class ListCommandsCommand extends UniversalConsoleCommand
 {
     public function execute()
     {
@@ -15,15 +15,7 @@ class ListCommandsCommand extends UniversalConsoleUniversalCommand
 
     public function listCommands($excludes = null)
     {
-        if ($this->app->getConfig()->developmentMode) {
-            $commandPaths = array_merge(
-                $this->factory()->config()->productionCommandPaths,
-                $this->factory()->config()->developmentCommandPaths
-            );
-
-        } else {
-            $commandPaths = $this->factory()->config()->productionCommandPaths;
-        }
+        $commandPaths = $this->factory()->config()->commandPaths;
 
         if ($excludes) {
             $excludes = array_flip($excludes);
@@ -53,13 +45,14 @@ class ListCommandsCommand extends UniversalConsoleUniversalCommand
 
                 $include = false;
 
-                if ($instance instanceof UniversalConsoleUniversalCommand) {
-                    $include = true;
 
-                } elseif ($this->request->isWebRequest && $instance instanceof UniversalConsoleWebCommand) {
-                    $include = true;
+                if ($instance instanceof UniversalConsoleWebCommand) {
+                    $include = $this->request->isWebRequest;
 
-                } elseif (!$this->request->isWebRequest && $instance instanceof UniversalConsoleCommandlineCommand) {
+                } elseif ($instance instanceof UniversalConsoleCommandlineCommand) {
+                    $include = !$this->request->isWebRequest;
+
+                } elseif ($instance) {
                     $include = true;
                 }
 

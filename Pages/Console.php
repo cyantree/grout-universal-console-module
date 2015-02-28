@@ -21,6 +21,6 @@ class Console extends Page
 
         $this->executionKey = $factory->generateExecutionKey();
 
-        $this->setResult($factory->templates()->load('CyantreeUniversalConsoleModule::console.html', null, false));
+        $this->setResult($factory->templates()->load('.Cyantree\UniversalConsoleModule::console.html', null, false));
     }
 }
