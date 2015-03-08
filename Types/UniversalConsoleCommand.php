@@ -2,6 +2,7 @@
 namespace Grout\Cyantree\UniversalConsoleModule\Types;
 
 use Cyantree\Grout\App\App;
+use Cyantree\Grout\App\Page;
 use Cyantree\Grout\App\Task;
 
 use Grout\Cyantree\UniversalConsoleModule\Pages\Console;
@@ -15,7 +16,7 @@ abstract class UniversalConsoleCommand
     /** @var App */
     public $app;
 
-    /** @var Console */
+    /** @var Page */
     public $page;
 
     /** @var UniversalConsoleRequest */
